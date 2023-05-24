@@ -365,6 +365,33 @@ impl BoolVec {
     pub fn bytes_len(&self) -> usize {
         self.bytes.len()
     }
+
+    /// Copies BoolVec data into a Vec<bool>
+    /// ```rust
+    /// use bool_vec::boolvec;
+    /// 
+    /// let bv = boolvec![true, false, true];
+    ///
+    /// let vector = bv.into_vector();
+    ///
+    /// assert_eq!(vector, vec![true, false, true]);
+    /// ```
+    ///
+    /// To achieve the opposite (getting a `BoolVec` from a `Vec<bool>` or a `&[bool]`),
+    /// please see BoolVec::from()
+    ///
+    /// *WARNING: This might require a non indifferent amount of memory if you are working
+    /// with a large amount of data, please consider trying to work with BoolVec directly
+    /// if you can*
+    pub fn into_vector(&self) -> Vec<bool> {
+        let mut new_vec = Vec::with_capacity(self.len());
+
+        for b in self {
+            new_vec.push(b);
+        }
+
+        new_vec
+    }
 }
 
 impl PartialEq for BoolVec {
