@@ -1,9 +1,10 @@
 [package]
 name = "bool_vec"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT"
 description = "A crates that exposes a vector called BoolVec which allows you to store a boolean in a single bit"
+repository = "https://github.com/DumbMahreeo/bool_vec"
 
 [dependencies]
 count-macro = "0.2.2"
