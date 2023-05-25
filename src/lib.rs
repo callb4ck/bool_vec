@@ -380,7 +380,7 @@ impl BoolVec {
         self.bytes.len()
     }
 
-    /// Copies BoolVec data into a Vec<bool>
+    /// Copies BoolVec data into a `Vec<bool>`
     /// ```rust
     /// use bool_vec::boolvec;
     /// 
