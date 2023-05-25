@@ -1,5 +1,9 @@
 use std::fmt::{Binary, Debug, Write};
 
+#[doc = include_str!("../README.md")]
+#[cfg(doctest)]
+struct ReadmeDoctests;
+
 /// A vector that can store 8 booleans in a single byte
 ///
 /// You can use the `BoolVec::new()`, `BoolVec::default()` and `BoolVec::with_size()`
@@ -256,6 +260,16 @@ impl BoolVec {
     /// assert_eq!(bv.capacity(), 8);
     /// assert_eq!(bv.len(), 7);
     /// ```
+    /// ---
+    /// ```rust
+    /// use bool_vec::boolvec;
+    /// let mut bv1 = boolvec![true];
+    /// let bv2 = boolvec![];
+    ///
+    /// bv1.pop();
+    ///
+    /// assert_eq!(bv1, bv2);
+    /// ```
     pub fn pop(&mut self) -> Option<bool> {
         // self.get()'s check cannot be trusted here since it would require 0u8-1
         if self.length == 0 {
@@ -372,7 +386,7 @@ impl BoolVec {
     /// 
     /// let bv = boolvec![true, false, true];
     ///
-    /// let vector = bv.into_vector();
+    /// let vector = bv.into_vec();
     ///
     /// assert_eq!(vector, vec![true, false, true]);
     /// ```
@@ -383,7 +397,7 @@ impl BoolVec {
     /// *WARNING: This might require a non indifferent amount of memory if you are working
     /// with a large amount of data, please consider trying to work with BoolVec directly
     /// if you can*
-    pub fn into_vector(&self) -> Vec<bool> {
+    pub fn into_vec(&self) -> Vec<bool> {
         let mut new_vec = Vec::with_capacity(self.len());
 
         for b in self {
@@ -400,7 +414,13 @@ impl PartialEq for BoolVec {
             return false;
         }
 
-        self.bytes == other.bytes
+        let min_length = if self.bytes_len() <= other.bytes_len() {
+            self.bytes_len()
+        } else {
+            other.bytes_len()
+        };
+
+        self.bytes[..min_length] == other.bytes[..min_length]
     }
 }
 
