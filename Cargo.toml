@@ -4,7 +4,7 @@ version = "0.2.1"
 edition = "2021"
 license = "MIT"
 description = "A crates that exposes a vector called BoolVec which allows you to store a boolean in a single bit"
-repository = "https://github.com/DumbMahreeo/bool_vec"
+repository = "https://github.com/callb4ck/bool_vec"
 
 [dependencies]
 count-macro = "0.2.2"
