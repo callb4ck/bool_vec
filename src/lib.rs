@@ -46,7 +46,7 @@ struct ReadmeDoctests;
 /// assert_eq!(format!("{bv:b}"), "[11011111, 10000000]")
 /// // You can also apply padding and pretty printing. See formatting specifiers.
 /// ```
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct BoolVec {
     /// The underlying vector holding the bytes
     bytes: Vec<u8>,
