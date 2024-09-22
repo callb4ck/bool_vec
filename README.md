@@ -190,7 +190,7 @@ bv.set(2, false).unwrap();
 assert_eq!(format!("{bv:b}"), "[11011111, 10000000]")
 ```
 
-It's ok if you don't understand this le latter, it's mostly for debug purposes and you don't need to concern with it.
+It's ok if you don't understand the latter, it's mostly for debug purposes and you don't need to concern with it.
 
 ### Other
 Other methods you might already know from `Vec` are implemented, such as:
